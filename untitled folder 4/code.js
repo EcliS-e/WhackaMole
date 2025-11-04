@@ -7,7 +7,7 @@ function setup() {
  serial = new p5.SerialPort();
 
  serial.list();
- serial.open('/dev/tty.Bluetooth-Incoming-Port');
+ serial.open('COM3');
 
  serial.on('connected', serverConnected);
 
@@ -48,17 +48,20 @@ function gotError(theerror) {
 }
 
 function gotData() {
- let currentString = serial.readLine();
-  trim(currentString);
- if (!currentString) return;
- console.log(currentString);
- latestData = currentString;
+    latestData = Number(serial.read());
+    console.log(latestData);
+//  let currentString = serial.readLine();
+//   trim(currentString);
+//  if (!currentString) return;
+//  console.log(currentString);
+//  latestData = currentString;
+
 }
 
 function draw() {
  background(255,255,255);
  fill(0,0,0);
- text(latestData, 10, 10);
+ text("" + latestData, 10, 10);
  // Polling method
  /*
  if (serial.available() > 0) {
