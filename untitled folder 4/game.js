@@ -1,10 +1,60 @@
+//The goal is to make an interactive game of whack-a-mole.
+
+let molePresent = false;
+let counter = 0;
+let timer = 30;
+
+//load game assets
+const preloadAssets = () => {
+   // moleSprite = loadImage("./assets/mole.png");
+   // bgScene = loadImage('assets/bg.png');
+};
+
+/*Left button: check for mole. If mole in boundary, left mole down. 
+If mole not in boundary, lose points or time */
+const buttonCheck = () => {
+ connection.on("v", );
+ counter++;
+ connection.on("h", );
+
+}
+
+//potentially could be turned nto spawn random objects function
+const spawnMole = () => {
+ let position;
+//use a random to determine if the mole will spawn left or right.
+if(Math.random() < .5){
+        position = 500;
+        
+} else {
+        position = 30;
+}
+    //img(moleSprite, position, 300);
+}
+
+/**increase the score */
+const increaseScore = () => {
+ counter++;
+ text(counter, 10, 10, 70, 80);
+}
+const decreaseScore = () => {
+ counter--;
+ text(counter, 10, 10, 70, 80);
+}
 function setup(){
+//assets go here
 
 }
 
 function gameLoop(){
+counter = 0;
 
-
+//check if there's a mole on the screen
+if (molePresent = false) {
+    //spawnMole
+    spawnMole
+}
+//img(bg, position, 300);
 }
 
 function gameOver() {

@@ -1,72 +1,15 @@
-let serial;
-let latestData = "waiting for data";
+const connection = SimpleWebSerial.setupSerialConnection({
+    requestAccessOnPageLoad: true
+});
 
-function setup() {
- createCanvas(windowWidth, windowHeight);
+connection.on('event-from-arduino', function(data) {
+    console.log('Received event "event-from-arduino" with parameter ' + data)
+});
 
- serial = new p5.SerialPort();
+connection.send('event-with-string', "Hello there, Arduino");
 
- serial.list();
- serial.open('COM3');
+connection.send('event-with-number', 123);
 
- serial.on('connected', serverConnected);
+connection.send('event-with-array', [42, "Nice string"]);
 
- serial.on('list', gotList);
-
- serial.on('data', gotData);
-
- serial.on('error', gotError);
-
- serial.on('open', gotOpen);
-
- serial.on('close', gotClose);
-}
-
-function serverConnected() {
- print("Connected to Server");
-}
-
-function gotList(thelist) {
- print("List of Serial Ports:");
-
- for (let i = 0; i < thelist.length; i++) {
-  print(i + " " + thelist[i]);
- }
-}
-
-function gotOpen() {
- print("Serial Port is Open");
-}
-
-function gotClose(){
- print("Serial Port is Closed");
- latestData = "Serial Port is Closed";
-}
-
-function gotError(theerror) {
- print(theerror);
-}
-
-function gotData() {
-    latestData = Number(serial.read());
-    console.log(latestData);
-//  let currentString = serial.readLine();
-//   trim(currentString);
-//  if (!currentString) return;
-//  console.log(currentString);
-//  latestData = currentString;
-
-}
-
-function draw() {
- background(255,255,255);
- fill(0,0,0);
- text("" + latestData, 10, 10);
- // Polling method
- /*
- if (serial.available() > 0) {
-  let data = serial.read();
-  ellipse(50,50,data,data);
- }
- */
-}
+connection.send('event-with-object', { r: 255, g: 255, b: 255 });
