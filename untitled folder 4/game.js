@@ -52,7 +52,7 @@ counter = 0;
 //check if there's a mole on the screen
 if (molePresent = false) {
     //spawnMole
-    spawnMole
+    spawnMole();
 }
 //img(bg, position, 300);
 }
