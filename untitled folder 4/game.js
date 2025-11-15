@@ -3,7 +3,8 @@
 let molePresent = false;
 let counter = 0;
 let timer = 30;
-
+let bgScene;
+let moleSprite;
 /**increase the score */
 const increaseScore = () => {
  counter++;
@@ -23,12 +24,22 @@ const preloadAssets = () => {
 
 /*Left button: check for mole. If mole in boundary, left mole down. 
 If mole not in boundary, lose points or time */
-const buttonCheck = () => {
- connection.on("v", );
- counter++;
- connection.on("h", );
+const buttonCheck = (buttonDirection) => {
+ 
+ if (buttonDirection == 'rightbutton' && molePosition < width/2) {
+    counter++;
+ }
 
-}
+ if (buttonDirection == 'leftbutton' && molePosition > width/2) {
+    counter++;
+ }
+
+ 
+
+};
+
+
+
 
 //potentially could be turned nto spawn random objects function
 const spawnMole = () => {
@@ -72,14 +83,15 @@ gameStart();
 
 
 function gameLoop(){
-img(bgMole);
+Image(bgScene);
 counter = 0;
 
 //check if there's a mole on the screen
-if (molePresent = false) {
+if (molePresent == false) {
     //spawnMole
     spawnMole();
 }
+
 //img(bg, position, 300);
 };
 
