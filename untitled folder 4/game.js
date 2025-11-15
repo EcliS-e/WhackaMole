@@ -83,7 +83,7 @@ gameStart();
 
 
 function gameLoop(){
-Image(bgScene);
+img(bgScene);
 counter = 0;
 
 //check if there's a mole on the screen

@@ -19,16 +19,16 @@ const  connection  = SimpleWebSerial.setupSerialConnection({ // Connection with 
 connection.on('rightbutton', function(data) {
     console.log('Received event "event-from-arduino" with parameter ' + data);
     if(data > 0){
-           buttonCheck(rightbutton);
+           buttonCheck("rightbutton");
     }
 });
 
-connection.on('leftbutton', function(data) {
+/*connection.on('leftbutton', function(data) {
     console.log('Received event "event-from-arduino" with parameter ' + data);
     if(data > 0){
-        buttonCheck(leftbutton);
+        buttonCheck("leftbutton");
     }
-});
+});*/
 
 connection.send('event-with-string', "Hello there, Arduino");
 
