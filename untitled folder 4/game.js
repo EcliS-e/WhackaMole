@@ -5,6 +5,7 @@ let counter = 0;
 let timer = 30;
 let bgScene;
 let moleSprite;
+let molePosition;
 /**increase the score */
 const increaseScore = () => {
  counter++;
@@ -17,7 +18,7 @@ const decreaseScore = () => {
 }
 
 //load game assets
-const preloadAssets = () => {
+function preloadAssets()  {
     moleSprite = loadImage("./assets/mole.png");
     bgScene = loadImage('./assets/bgMole.png');
 };
@@ -26,11 +27,11 @@ const preloadAssets = () => {
 If mole not in boundary, lose points or time */
 const buttonCheck = (buttonDirection) => {
  
- if (buttonDirection == 'rightbutton' && molePosition < width/2) {
+ if (buttonDirection == 'rightbutton' && molePosition > width/2) {
     counter++;
  }
 
- if (buttonDirection == 'leftbutton' && molePosition > width/2) {
+ if (buttonDirection == 'leftbutton' && molePosition < width/2) {
     counter++;
  }
 
@@ -51,7 +52,7 @@ if(Math.random() < .5){
 } else {
         position = 30;
 }
-    img(moleSprite, position, 300);
+    image(moleSprite, position, 300);
 }
 
 
@@ -75,7 +76,9 @@ const gameStart = () => {
 
 function setup(){
 //assets go here
+preloadAssets();
 createCanvas(1024, 512);
+
 //arduinoControls();
 gameStart();
 
@@ -83,15 +86,21 @@ gameStart();
 
 
 function gameLoop(){
-img(bgScene);
+background(150);
+console.log(bgScene);
+image(bgScene,0,0,1024,512);
+//canvas.clear();
+//background(bgScene);
 counter = 0;
 
 //check if there's a mole on the screen
+
+/*
 if (molePresent == false) {
     //spawnMole
     spawnMole();
 }
-
+*/
 //img(bg, position, 300);
 };
 
