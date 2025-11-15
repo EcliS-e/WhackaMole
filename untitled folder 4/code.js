@@ -1,7 +1,39 @@
-const connection = SimpleWebSerial.setupSerialConnection({
+//import {setupSerialConnection} from 'simple-web-serial';
+//const connection  = SimpleWebSerial.setupSerialConnection(); // Default, out-of-the-box behavior
+//const conn2 = SimpleWebSerial.setupSerialConnection(9600); // Connect with a lower connection speed
+const  connection  = SimpleWebSerial.setupSerialConnection({ // Connection with a custom constructor object
+    baudRate: 9600,
+    logOutgoingSerialData: true,
+    requestAccessOnPageLoad: true,
+});
+/* const connection = SimpleWebSerial.setupSerialConnection({
     requestAccessOnPageLoad: true
+});*/
+/*connection.on('event-from-arduino', function(data) {
+    console.log('Received event "event-from-arduino" with parameter ' + data);
+    if(data > 0){
+
+    }
+});*/
+
+connection.on('rightbutton', function(data) {
+    console.log('Received event "event-from-arduino" with parameter ' + data);
+    if(data > 0){
+           buttonCheck(rightbutton);
+    }
 });
 
+connection.on('leftbutton', function(data) {
+    console.log('Received event "event-from-arduino" with parameter ' + data);
+    if(data > 0){
+        buttonCheck(leftbutton);
+    }
+});
+
+connection.send('event-with-string', "Hello there, Arduino");
+
+
+/*
 connection.on('event-from-arduino', function(data) {
     console.log('Received event "event-from-arduino" with parameter ' + data)
 });
@@ -21,3 +53,4 @@ const conn3 = SimpleWebSerial.setupSerialConnection({ // Connection with a custo
     requestAccessOnPageLoad: true,
 });
 
+*/
