@@ -1,11 +1,21 @@
 //The goal is to make an interactive game of whack-a-mole.
 
+let startButton;
 let molePresent = false;
 let counter = 0;
 let timer = 30;
 let bgScene;
 let moleSprite;
 let molePosition;
+
+/*
+init();
+
+function init(){
+    createCanvas(1024, 512);
+    draw();
+}*/
+
 /**increase the score */
 const increaseScore = () => {
  counter++;
@@ -56,9 +66,17 @@ if(Math.random() < .5){
 }
 
 
+function setup(){
+//assets go here
+preloadAssets();
+let canvas = createCanvas(1024, 512);
+
+ gameStart();
+
+}
 
 /** a black background with a start prompt */
-const gameStart = () => {
+function gameStart ()  {
   background(0);
 
   //intro text
@@ -67,31 +85,24 @@ const gameStart = () => {
   text(introText, 50, 10, 70, 80);
 
   //start the game
-  let startButton = createButton('START');
+ startButton = createButton('START');
   startButton.position(width/3, 100);
 
 
   startButton.mousePressed(gameLoop);
 }; 
 
-function setup(){
-//assets go here
-preloadAssets();
-createCanvas(1024, 512);
-
-//arduinoControls();
-gameStart();
-
-}
-
 
 function gameLoop(){
-background(150);
+startButton.remove();
+counter = 0;
+background(bgScene);
 console.log(bgScene);
-image(bgScene,0,0,1024,512);
+
+text(counter, 50, 10, 70, 80);
 //canvas.clear();
 //background(bgScene);
-counter = 0;
+
 
 //check if there's a mole on the screen
 

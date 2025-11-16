@@ -1,7 +1,9 @@
 //import {setupSerialConnection} from 'simple-web-serial';
 //const connection  = SimpleWebSerial.setupSerialConnection(); // Default, out-of-the-box behavior
 //const conn2 = SimpleWebSerial.setupSerialConnection(9600); // Connect with a lower connection speed
-const  connection  = SimpleWebSerial.setupSerialConnection({ // Connection with a custom constructor object
+
+
+/* code starts here: const  connection  = SimpleWebSerial.setupSerialConnection({ // Connection with a custom constructor object
     baudRate: 9600,
     logOutgoingSerialData: true,
     requestAccessOnPageLoad: true,
@@ -15,7 +17,7 @@ const  connection  = SimpleWebSerial.setupSerialConnection({ // Connection with 
 
     }
 });*/
-
+/*
 connection.on('right-button', function(data) {
     console.log('Received event "event-from-arduino" with parameter ' + data);
     if(data > 0){
@@ -23,6 +25,7 @@ connection.on('right-button', function(data) {
     }
 });
 
+connection.send('event-with-string', "Hello there, Arduino");*/
 /*connection.on('leftbutton', function(data) {
     console.log('Received event "event-from-arduino" with parameter ' + data);
     if(data > 0){
@@ -30,7 +33,6 @@ connection.on('right-button', function(data) {
     }
 });*/
 
-connection.send('event-with-string', "Hello there, Arduino");
 
 
 /*
