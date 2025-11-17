@@ -8,8 +8,10 @@ let bgScene;
 let moleSprite;
 let molePosition;
 let width = 1024;
-
+let retryButton;
+let menuButton;
 /**increase the score */
+
 const increaseScore = () => {
  counter++;
  background(bgScene); // remove mole and score
@@ -24,10 +26,15 @@ const decreaseScore = () => {
 }
 
 const decreaseTimer = () => {
-    timer-=1;
+    if (timer > 0) {
+        timer-=1;
+    };
      background(bgScene);
       text(counter, 50, 10, 70, 80);
      text('time:' + `${timer}`, 920, 10, 70, 80);
+     if(timer == 0) {
+     gameOver();
+     };
 }
 //load game assets
 function preloadAssets()  {
@@ -134,7 +141,29 @@ else if (molePresent == true){
 /** shows high score and button that 
  * calls gameloop and a button for gameStart (titlescreen */
 function gameOver() {
-    
+  background(0);
+
+  //intro text
+  introText = "time's up!";
+  let scoreText = "your score: " + `${counter}`;
+  fill(255);
+  text(introText, 50, 10, 70, 80);
+ text(scoreText, 50, 10, 70, 80);
+
+  counter = 0;
+
+  //start the game
+  retryButton = createButton('Retry');
+  retryButton.position(width/3, 100);
+
+
+  retryButton.mousePressed(gameLoop);
+
+   menuButton = createButton('Main menu');
+  menuButton.position(width/3, height - 30);
+
+
+   menuButton.mousePressed(gameStart);
 }
 
 function mouseClicked(){
