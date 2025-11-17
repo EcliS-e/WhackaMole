@@ -13,7 +13,6 @@ connection.on('right-button', function(data) {
     }
 });
 
-connection.send('event-with-string', "Hello there, Arduino");
 connection.on('leftbutton', function(data) {
     console.log('Received event "event-from-arduino" with parameter ' + data);
     if(data > 0){
