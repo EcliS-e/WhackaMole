@@ -7,6 +7,7 @@ let timer = 30;
 let bgScene;
 let moleSprite;
 let molePosition;
+let width = 1024;
 
 /*
 init();
@@ -19,7 +20,10 @@ function init(){
 /**increase the score */
 const increaseScore = () => {
  counter++;
- text(counter, 10, 10, 70, 80);
+ background(bgScene); // remove mole and score
+ text(counter, 50, 10, 70, 80);
+ molePresent = false;
+ gameLoop();
 }
 
 const decreaseScore = () => {
@@ -36,16 +40,21 @@ function preloadAssets()  {
 /*Left button: check for mole. If mole in boundary, left mole down. 
 If mole not in boundary, lose points or time */
 const buttonCheck = (buttonDirection) => {
- 
- if (buttonDirection == 'rightbutton' && molePosition > width/2) {
-    counter++;
- }
 
- if (buttonDirection == 'leftbutton' && molePosition < width/2) {
-    counter++;
- }
-
+    console.log("Buttons checked!");
  
+ if(molePosition < 500){
+    
+        if (buttonDirection == 'rightButton') {
+            increaseScore();
+        }
+    }
+
+    if (molePosition >= 500){
+        if (buttonDirection == 'leftButton') {
+            increaseScore();
+        }   
+    }
 
 };
 
@@ -63,6 +72,8 @@ if(Math.random() < .5){
         position = 30;
 }
     image(moleSprite, position, 300);
+    molePosition = position;
+    molePresent = true;
 }
 
 
@@ -84,6 +95,8 @@ function gameStart ()  {
   fill(255);
   text(introText, 50, 10, 70, 80);
 
+  counter = 0;
+
   //start the game
  startButton = createButton('START');
   startButton.position(width/3, 100);
@@ -95,23 +108,27 @@ function gameStart ()  {
 
 function gameLoop(){
 startButton.remove();
-counter = 0;
+// counter = 0;
 background(bgScene);
-console.log(bgScene);
+// console.log(bgScene);
 
 text(counter, 50, 10, 70, 80);
 //canvas.clear();
 //background(bgScene);
 
+spawnMole();
 
 //check if there's a mole on the screen
 
-/*
+
 if (molePresent == false) {
     //spawnMole
     spawnMole();
 }
-*/
+else if (molePresent == true){
+    buttonCheck();
+}
+
 //img(bg, position, 300);
 };
 
@@ -119,4 +136,25 @@ if (molePresent == false) {
  * calls gameloop and a button for gameStart (titlescreen */
 function gameOver() {
     
+}
+
+function mouseClicked(){
+
+    if(molePresent == true){
+
+        if(molePosition < 500){
+        
+            if (mouseX < 500) {
+                increaseScore();
+                // console.log("click!");
+            }
+        }
+
+        if (molePosition >= 500){
+            if (mouseX >= 500) {
+                increaseScore();
+                // console.log("click!");
+            }   
+        }
+    }
 }
