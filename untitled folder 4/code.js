@@ -1,4 +1,4 @@
-
+/*
 const  connection  = SimpleWebSerial.setupSerialConnection({ // Connection with a custom constructor object
     baudRate: 9600,
     logOutgoingSerialData: true,
@@ -19,3 +19,4 @@ connection.on('leftbutton', function(data) {
         buttonCheck("leftbutton");
     }
 });
+*/

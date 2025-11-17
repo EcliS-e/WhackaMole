@@ -9,32 +9,30 @@ let moleSprite;
 let molePosition;
 let width = 1024;
 
-/*
-init();
-
-function init(){
-    createCanvas(1024, 512);
-    draw();
-}*/
-
 /**increase the score */
 const increaseScore = () => {
  counter++;
  background(bgScene); // remove mole and score
  text(counter, 50, 10, 70, 80);
  molePresent = false;
- gameLoop();
+ // gameLoop();
 }
 
 const decreaseScore = () => {
- counter--;
+ counter-= 1;
  text(counter, 10, 10, 70, 80);
 }
 
+const decreaseTimer = () => {
+    timer-=1;
+     background(bgScene);
+      text(counter, 50, 10, 70, 80);
+     text('time:' + `${timer}`, 920, 10, 70, 80);
+}
 //load game assets
 function preloadAssets()  {
     moleSprite = loadImage("./assets/mole.png");
-    bgScene = loadImage('./assets/bgMole.png');
+    bgScene = loadImage('./assets/bgmolee.png');
 };
 
 /*Left button: check for mole. If mole in boundary, left mole down. 
@@ -69,7 +67,7 @@ if(Math.random() < .5){
         position = 500;
         
 } else {
-        position = 30;
+        position = 245;
 }
     image(moleSprite, position, 300);
     molePosition = position;
@@ -81,7 +79,7 @@ function setup(){
 //assets go here
 preloadAssets();
 let canvas = createCanvas(1024, 512);
-
+textSize(25);
  gameStart();
 
 }
@@ -116,14 +114,15 @@ text(counter, 50, 10, 70, 80);
 //canvas.clear();
 //background(bgScene);
 
-spawnMole();
 
 //check if there's a mole on the screen
 
 
+
+setInterval(decreaseTimer, 1000);
 if (molePresent == false) {
     //spawnMole
-    spawnMole();
+    setInterval(spawnMole, 2000);
 }
 else if (molePresent == true){
     buttonCheck();
