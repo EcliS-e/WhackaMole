@@ -12,6 +12,7 @@ let retryButton;
 let menuButton;
 let gameIsOver = false;
 let spawner;
+let scoreText
 /**increase the score */
 
 const increaseScore = () => {
@@ -124,7 +125,10 @@ function gameLoop() {
     textSize(25);
     startButton.remove();
 
-
+if (retryButton) {
+ retryButton.remove();
+ menuButton.remove();
+}
        
     
     // counter = 0;
@@ -165,7 +169,7 @@ function gameOver() {
 
     fill(255);
     text(introText, width / 2 - 20, 50, 70, 80);
-    text(scoreText, width / 2 + 100, 40, 70, 80);
+ 
 
     counter = 0;
 
@@ -183,8 +187,7 @@ function gameOver() {
     menuButton.mousePressed(gameStart);
 
     retryButton.mousePressed(gameLoop);
-     retryButton.remove();
-    menuButton.remove();
+   
 }
 
 function mouseClicked() {
