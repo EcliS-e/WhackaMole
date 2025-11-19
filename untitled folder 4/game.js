@@ -18,7 +18,7 @@ let retry = false;
 
 const increaseScore = () => {
     counter++;
-    background(bgScene); // remove mole and score
+    background(bgScene); // update score
     text(counter, 50, 10, 70, 80);
     molePresent = false;
     // gameLoop();
@@ -52,18 +52,22 @@ function preloadAssets() {
 If mole not in boundary, lose points or time */
 const buttonCheck = (buttonDirection) => {
 
-    console.log("Buttons checked!");
+    //console.log("Buttons checked!");
+    console.log(buttonDirection);
 
-    if (molePosition < 500) {
+    if(molePresent == true){
 
-        if (buttonDirection == 'rightButton') {
-            increaseScore();
+        if (molePosition >= 500) {
+
+            if (buttonDirection == 'rightButton') {
+                increaseScore();
+            }
         }
-    }
 
-    if (molePosition >= 500) {
-        if (buttonDirection == 'leftButton') {
-            increaseScore();
+        if (molePosition < 500) {
+            if (buttonDirection == 'leftButton') {
+                increaseScore();
+            }
         }
     }
 
@@ -85,6 +89,7 @@ const spawnMole = () => {
     image(moleSprite, position, 300);
     molePosition = position;
     molePresent = true;
+    buttonCheck();
 }
 
 
@@ -128,7 +133,7 @@ function gameStart() {
 
 function gameLoop() {
   //  image(bgScene, 1024, 512);
-    timer = 3;
+    // timer = 3;
     textSize(25);
     startButton.remove();
 
@@ -153,6 +158,7 @@ if (retry == true) {
 
     setInterval(decreaseTimer, 1000);
 
+    
     if (molePresent == false) {
         //spawnMole
 

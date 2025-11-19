@@ -1,4 +1,4 @@
-/*
+
 const  connection  = SimpleWebSerial.setupSerialConnection({ // Connection with a custom constructor object
     baudRate: 9600,
     logOutgoingSerialData: true,
@@ -6,17 +6,16 @@ const  connection  = SimpleWebSerial.setupSerialConnection({ // Connection with 
 });
 
 
-connection.on('right-button', function(data) {
-    console.log('Received event "event-from-arduino" with parameter ' + data);
-    if(data > 0){
-           buttonCheck("rightbutton");
-    }
+connection.on('event-from-arduino', function(data) {
+    // console.log('Received event "event-from-arduino" with parameter ' + data);
+   // if(data > 0){
+           buttonCheck(data);
+   // }
 });
 
-connection.on('leftbutton', function(data) {
-    console.log('Received event "event-from-arduino" with parameter ' + data);
-    if(data > 0){
-        buttonCheck("leftbutton");
-    }
-});
-*/
+// connection.on('event-from-arduino', function(data) {
+//   //  console.log('Received event "event-from-arduino" with parameter ' + data);
+//     if(data > 0){
+//         buttonCheck(data);
+//     }
+// });
