@@ -149,7 +149,7 @@ if (retryButton) {
     if (molePresent == false) {
         //spawnMole
 
-        spawner = setInterval(spawnMole, 2000);
+        spawner = setInterval(spawnMole, 4000);
 
     }
     else if (molePresent == true) {
