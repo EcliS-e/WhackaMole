@@ -12,7 +12,8 @@ let retryButton;
 let menuButton;
 let gameIsOver = false;
 let spawner;
-let scoreText
+let scoreText;
+let retry = false;
 /**increase the score */
 
 const increaseScore = () => {
@@ -36,9 +37,9 @@ const decreaseTimer = () => {
     text(counter, 50, 10, 70, 80);
     text('time:' + `${timer}`, 920, 10, 70, 80);
     if (timer == 0) {
-        gameIsOver = true;
+  
         clearInterval(spawner);
-        gameOver();
+        gameStart();
     };
 }
 //load game assets
@@ -98,18 +99,23 @@ function setup() {
 
 /** a black background with a start prompt */
 function gameStart() {
+
+      counter = 0;
+/*
+      if (retry == true) {
+ retryButton.remove();
+ menuButton.remove();
+}
+*/
     background(0);
-    if (retryButton || menuButton) {
-        retryButton.remove();
-        menuButton.remove();
-    }
+  
     //intro text
     textSize(11)
     introText = "WELCOME TO WHACKAMOLE";
     fill(255);
     text(introText, 50, 10, 70, 80);
 
-    counter = 0;
+   
 
     //start the game
     startButton = createButton('START');
@@ -121,11 +127,12 @@ function gameStart() {
 
 
 function gameLoop() {
-    timer = 30;
+  //  image(bgScene, 1024, 512);
+    timer = 3;
     textSize(25);
     startButton.remove();
 
-if (retryButton) {
+if (retry == true) {
  retryButton.remove();
  menuButton.remove();
 }
@@ -170,8 +177,8 @@ function gameOver() {
     fill(255);
     text(introText, width / 2 - 20, 50, 70, 80);
  
-
-    counter = 0;
+    retry = true;
+    
 
     //start the game
     retryButton = createButton('Retry');
@@ -185,6 +192,8 @@ function gameOver() {
 
 
     menuButton.mousePressed(gameStart);
+
+  
 
     retryButton.mousePressed(gameLoop);
    
