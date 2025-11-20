@@ -14,6 +14,7 @@ let gameIsOver = false;
 let spawner;
 let scoreText;
 let retry = false;
+let bgStart;
 /**increase the score */
 
 const increaseScore = () => {
@@ -47,6 +48,7 @@ const decreaseTimer = () => {
 function preloadAssets() {
     moleSprite = loadImage("./assets/mole.png");
     bgScene = loadImage('./assets/bgmolee.png');
+    bgStart = loadImage('./assets/start.png');
 };
 
 /*Left button: check for mole. If mole in boundary, left mole down. 
@@ -98,7 +100,7 @@ function setup() {
     //assets go here
     preloadAssets();
     let canvas = createCanvas(1024, 512);
-
+    startButton = createButton('START');
     gameStart();
 
 }
@@ -112,8 +114,10 @@ function gameStart() {
  retryButton.remove();
  menuButton.remove();
 }
-*/
-    background(0);
+*/ console.log(bgStart);
+   background(0);
+    background(bgStart);
+        
   
     //intro text
     textSize(24)
@@ -123,7 +127,7 @@ function gameStart() {
 
 
     //start the game
-    startButton = createButton('START');
+
     startButton.position(width / 3, 200);
 
 
@@ -134,7 +138,8 @@ function gameStart() {
 function gameLoop() {
   //  image(bgScene, 1024, 512);
     textSize(25);
-    startButton.remove();
+    
+    startButton.position(width / 3, -570);
 
     console.log(retry);
 
