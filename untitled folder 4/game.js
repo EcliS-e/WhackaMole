@@ -39,6 +39,7 @@ const decreaseTimer = () => {
     if (timer == 0) {
   
         clearInterval(spawner);
+        retry = true;
         gameStart();
     };
 }
@@ -53,7 +54,7 @@ If mole not in boundary, lose points or time */
 const buttonCheck = (buttonDirection) => {
 
     //console.log("Buttons checked!");
-    console.log(buttonDirection);
+    // console.log(buttonDirection);
 
     if(molePresent == true){
 
@@ -105,7 +106,7 @@ function setup() {
 /** a black background with a start prompt */
 function gameStart() {
 
-      counter = 0;
+    counter = 0;
 /*
       if (retry == true) {
  retryButton.remove();
@@ -115,16 +116,15 @@ function gameStart() {
     background(0);
   
     //intro text
-    textSize(11)
-    introText = "WELCOME TO WHACKAMOLE";
+    textSize(24)
+    introText = "WELCOME TO WHACKAMOLE!";
     fill(255);
-    text(introText, 50, 10, 70, 80);
+    text(introText, 250, 30, 70, 120);
 
-   
 
     //start the game
     startButton = createButton('START');
-    startButton.position(width / 3, 100);
+    startButton.position(width / 3, 200);
 
 
     startButton.mousePressed(gameLoop);
@@ -133,14 +133,19 @@ function gameStart() {
 
 function gameLoop() {
   //  image(bgScene, 1024, 512);
-    // timer = 3;
     textSize(25);
     startButton.remove();
 
-if (retry == true) {
- retryButton.remove();
- menuButton.remove();
-}
+    console.log(retry);
+
+    if(retry == true){
+        timer = 30;
+    }
+
+    // if (retry == true) {
+    //     retryButton.remove();
+    //     menuButton.remove();
+    // }
        
     
     // counter = 0;
@@ -162,7 +167,7 @@ if (retry == true) {
     if (molePresent == false) {
         //spawnMole
 
-        spawner = setInterval(spawnMole, 4000);
+        spawner = setInterval(spawnMole, 3000);
 
     }
     else if (molePresent == true) {
@@ -199,9 +204,8 @@ function gameOver() {
 
     menuButton.mousePressed(gameStart);
 
-  
 
-    retryButton.mousePressed(gameLoop);
+   // retryButton.mousePressed(gameLoop);
    
 }
 
