@@ -101,6 +101,7 @@ function setup() {
     preloadAssets();
     let canvas = createCanvas(1024, 512);
     startButton = createButton('START');
+     background(bgStart);
     gameStart();
 
 }
